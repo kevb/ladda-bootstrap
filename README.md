@@ -22,7 +22,7 @@ Buttons accepts three attributes:
 - **data-size**: xs/s/l/xl, defaults to medium
 - **data-spinner-size**: 40, pixel dimensions of spinner, defaults to dynamic size based on the button height
 - **data-spinner-color**: A hex code or any [named CSS color](http://css-tricks.com/snippets/css/named-colors-and-hex-equivalents/). 
-- **data-show-success**: A number of seconds to show a check mark for, once spinner has finished, to indicate success
+- **data-show-success**: A number of milliseconds to show a check mark for, once spinner has finished, to indicate success
 
 #### JavaScript
 
