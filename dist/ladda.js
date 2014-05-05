@@ -2,7 +2,7 @@
     if (typeof exports === "object") {
         module.exports = factory();
     } else if (typeof define === "function" && define.amd) {
-        define([ "spin" ], factory);
+        define([ "./spin" ], factory);
     } else {
         root.Ladda = factory(root.Spinner);
     }
@@ -21,6 +21,9 @@
         var spinnerWrapper = document.createElement("span");
         spinnerWrapper.className = "ladda-spinner";
         button.appendChild(spinnerWrapper);
+        var successWrapper = document.createElement("span");
+        successWrapper.className = "ladda-success glyphicon glyphicon-ok";
+        button.appendChild(successWrapper);
         var timer;
         var instance = {
             start: function() {
@@ -39,8 +42,16 @@
                 return this;
             },
             stop: function() {
-                button.removeAttribute("disabled");
                 button.removeAttribute("data-loading");
+                if (button.hasAttribute("data-show-success")) {
+                    button.setAttribute("data-loaded", "");
+                    setTimeout(function() {
+                        button.removeAttribute("disabled");
+                        button.removeAttribute("data-loaded");
+                    }, parseInt(button.getAttribute("data-show-success")));
+                } else {
+                    button.removeAttribute("disabled");
+                }
                 clearTimeout(timer);
                 timer = setTimeout(function() {
                     spinner.stop();
@@ -80,6 +91,9 @@
             },
             isLoading: function() {
                 return button.hasAttribute("data-loading");
+            },
+            getTarget: function() {
+                return button;
             }
         };
         ALL_INSTANCES.push(instance);

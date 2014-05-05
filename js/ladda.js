@@ -54,6 +54,11 @@
 		var spinnerWrapper = document.createElement( 'span' );
 		spinnerWrapper.className = 'ladda-spinner';
 		button.appendChild( spinnerWrapper );
+    
+    // Wrapper element for the success glyphicon
+    var successWrapper = document.createElement( 'span' );
+		successWrapper.className = 'ladda-success glyphicon glyphicon-ok';
+		button.appendChild( successWrapper );
 
 		// Timer used to delay starting/stopping
 		var timer;
@@ -93,9 +98,20 @@
 			 * Exit the loading state.
 			 */
 			stop: function() {
-
-				button.removeAttribute( 'disabled' );
-				button.removeAttribute( 'data-loading' );
+        
+        button.removeAttribute( 'data-loading' );
+        
+        if (button.hasAttribute('data-show-success')) {
+          button.setAttribute( 'data-loaded', '' );
+          setTimeout(function() {
+    				button.removeAttribute( 'disabled' );
+            button.removeAttribute( 'data-loaded' );
+          },parseInt(button.getAttribute('data-show-success')))
+        }else {
+  				button.removeAttribute( 'disabled' );
+  				
+        }
+				
 
 				// Kill the animation after a delay to make sure it
 				// runs for the duration of the button transition
