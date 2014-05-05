@@ -468,7 +468,7 @@ $spinnerSize: 32px;
 		display: inline-block;
 	}
 
-.ladda-button[data-style=zoom-out][data-loading] .ladda-label {
+.ladda-button[data-style=zoom-out][data-loading] .ladda-label, .ladda-button[data-style=zoom-out][data-loaded] .ladda-label {
 	opacity: 0;
 
 	@include transform( scale( 0.5 ) );
@@ -504,11 +504,12 @@ $spinnerSize: 32px;
 		display: inline-block;
 	}
 
-.ladda-button[data-style=zoom-in][data-loading] .ladda-label {
+.ladda-button[data-style=zoom-in][data-loading] .ladda-label, .ladda-button[data-style=zoom-in][data-loaded] .ladda-label  {
 	opacity: 0;
 
 	@include transform( scale( 2.2 ) );
 }
+
 .ladda-button[data-style=zoom-in][data-loading] .ladda-spinner {
 	opacity: 1;
 
